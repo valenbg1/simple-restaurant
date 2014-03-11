@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v4.app.NavUtils;
 import android.view.MenuItem;
 import android.widget.TextView;
+import pad.practica1.restaurante.MainActivity.IntentExtras;;
 
 public class ResultsActivity extends Activity {
 
