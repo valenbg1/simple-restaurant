@@ -17,7 +17,6 @@ public class MainActivity extends Activity implements OnClickListener {
 		COUNTRY, TOWN, PRICE
 	}
 	
-	
 	private Spinner foodTypeSpinner;
 	private Spinner roadTypeSpinner;
 	private Spinner coussineSpinner;
@@ -54,24 +53,23 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 	}
 
-
 	@Override
 	public void onClick(View v) {
 		Intent intent = new Intent(this, ResultsActivity.class);
+		
+		int price = priceText.getText().toString().equals("") ? -1 : Integer.valueOf(priceText.getText().toString()),
+				number = numberText.getText().toString().equals("") ? -1 : Integer.valueOf(numberText.getText().toString());
 				
 		intent.putExtra(IntentExtras.FOOD_TYPE.toString(), foodTypeSpinner.getSelectedItem().toString());
 		intent.putExtra(IntentExtras.ROAD_TYPE.toString(), roadTypeSpinner.getSelectedItem().toString());
 		intent.putExtra(IntentExtras.COUSSINE.toString(), coussineSpinner.getSelectedItem().toString());
 		intent.putExtra(IntentExtras.COUNTRY.toString(), countryAutoText.getText());
 		intent.putExtra(IntentExtras.NAME.toString(), nameText.getText());
-		intent.putExtra(IntentExtras.ADDRESS_NUM.toString(), numberText.getText());
+		intent.putExtra(IntentExtras.ADDRESS_NUM.toString(), number);
 		intent.putExtra(IntentExtras.ADDRESS.toString(), addressText.getText());
-		intent.putExtra(IntentExtras.PRICE.toString(), addressText.getText());
+		intent.putExtra(IntentExtras.PRICE.toString(), price);
 		intent.putExtra(IntentExtras.TOWN.toString(), townText.getText());
 		
 		startActivity(intent);
-		
-		
 	}
-
 }
