@@ -5,6 +5,7 @@ import java.util.Locale;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -31,6 +32,8 @@ public class MainActivity extends Activity implements OnClickListener {
 	private EditText townText;
 	private ImageButton searchButton;
 	
+	private ArrayAdapter<String> countries_adapter;
+	
 	@Override
 	public void onClick(View v) {
 		Intent intent = new Intent(this, ResultsActivity.class);
@@ -45,69 +48,55 @@ public class MainActivity extends Activity implements OnClickListener {
 			price = -1.0;
 			number = -1;
 		}
-				
+			
 		intent.putExtra(MainActivityElements.FOOD_TYPE.toString(), foodTypeSpinner.getSelectedItem().toString());
 		intent.putExtra(MainActivityElements.ROAD_TYPE.toString(), roadTypeSpinner.getSelectedItem().toString());
 		intent.putExtra(MainActivityElements.COUSSINE.toString(), coussineSpinner.getSelectedItem().toString());
-		intent.putExtra(MainActivityElements.COUNTRY.toString(), countryAutoText.getText());
-		intent.putExtra(MainActivityElements.NAME.toString(), nameText.getText());
+		intent.putExtra(MainActivityElements.COUNTRY.toString(), countryAutoText.getText().toString());
+		intent.putExtra(MainActivityElements.NAME.toString(), nameText.getText().toString());
 		intent.putExtra(MainActivityElements.ADDRESS_NUM.toString(), number);
-		intent.putExtra(MainActivityElements.ADDRESS.toString(), addressText.getText());
+		intent.putExtra(MainActivityElements.ADDRESS.toString(), addressText.getText().toString());
 		intent.putExtra(MainActivityElements.PRICE.toString(), price);
-		intent.putExtra(MainActivityElements.TOWN.toString(), townText.getText());
+		intent.putExtra(MainActivityElements.TOWN.toString(), townText.getText().toString());
 		
 		startActivity(intent);
 	}
 	
 	@Override
+	public void onConfigurationChanged(Configuration newConfig) {
+		super.onConfigurationChanged(newConfig);
+		
+		saveState();
+		setOrientationView(newConfig.orientation);
+	}
+	
+	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);		
 		
-		foodTypeSpinner = (Spinner) findViewById(R.id.foodTypeSpinner);
-		roadTypeSpinner = (Spinner) findViewById(R.id.typeRoadSpinner);
-		coussineSpinner = (Spinner) findViewById(R.id.coussineSpinner);
-		nameText = (EditText) findViewById(R.id.nameText);
-		numberText = (EditText) findViewById(R.id.numberText);
-		addressText = (EditText) findViewById(R.id.addressText);
-		priceText = (EditText) findViewById(R.id.priceText);
-		townText = (EditText) findViewById(R.id.townText);
-		searchButton = (ImageButton) findViewById(R.id.searchButton);
-		countryAutoText = (AutoCompleteTextView) findViewById(R.id.countryAutoText);
-		
-		String[] countries = Locale.getISOCountries();
-		 
-		for (int i = 0; i < countries.length; ++i)
-			countries[i] = new Locale("", countries[i]).getDisplayCountry();
-
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, countries);
-		countryAutoText.setAdapter(adapter);
-		
-		restoreState();
-		
-		searchButton.setOnClickListener(this);
-	};
+		setOrientationView(this.getResources().getConfiguration().orientation);
+	}
 	
 	@Override
 	protected void onPause() {
 		super.onPause();
 		
 		saveState();
-	};
+	}
 	
 	@Override
 	public void onRestoreInstanceState(Bundle savedInstanceState) {
 		super.onRestoreInstanceState(savedInstanceState);
 		
 		restoreState();
-	}
+	};
 	
 	@Override
 	protected void onResume() {
 		super.onResume();
 		
 		restoreState();
-	}
+	};
 	
 	@Override
 	public void onSaveInstanceState(Bundle savedInstanceState) {
@@ -115,7 +104,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		saveState();
 	}
-
+	
 	private void restoreState() {
 		SharedPreferences savedState = getPreferences(MODE_PRIVATE);
 		
@@ -137,12 +126,12 @@ public class MainActivity extends Activity implements OnClickListener {
 				numberText.setText(Integer.toString(number));
 			
 			if (price != -1.0)
-				priceText.setText(String.format("%.2f", price));
+				priceText.setText(String.format(Locale.US, "%.2f", price));
 		}
 	}
-
+	
 	private void saveState() {
-		SharedPreferences.Editor savedState = getPreferences(MODE_PRIVATE).edit();
+		SharedPreferences.Editor savedStateEdit = getPreferences(MODE_PRIVATE).edit();
 		
 		int number;
 		double price;
@@ -155,16 +144,53 @@ public class MainActivity extends Activity implements OnClickListener {
 			number = -1;
 		}
 		
-		savedState.putInt(MainActivityElements.FOOD_TYPE.toString(), foodTypeSpinner.getSelectedItemPosition());
-		savedState.putInt(MainActivityElements.ROAD_TYPE.toString(), roadTypeSpinner.getSelectedItemPosition());
-		savedState.putInt(MainActivityElements.COUSSINE.toString(), coussineSpinner.getSelectedItemPosition());
-		savedState.putString(MainActivityElements.COUNTRY.toString(), countryAutoText.getText().toString());
-		savedState.putString(MainActivityElements.NAME.toString(), nameText.getText().toString());
-		savedState.putInt(MainActivityElements.ADDRESS_NUM.toString(), number);
-		savedState.putString(MainActivityElements.ADDRESS.toString(), addressText.getText().toString());
-		savedState.putFloat(MainActivityElements.PRICE.toString(), (float) price);
-		savedState.putString(MainActivityElements.TOWN.toString(), townText.getText().toString());
+		savedStateEdit.putInt(MainActivityElements.FOOD_TYPE.toString(), foodTypeSpinner.getSelectedItemPosition());
+		savedStateEdit.putInt(MainActivityElements.ROAD_TYPE.toString(), roadTypeSpinner.getSelectedItemPosition());
+		savedStateEdit.putInt(MainActivityElements.COUSSINE.toString(), coussineSpinner.getSelectedItemPosition());
+		savedStateEdit.putString(MainActivityElements.COUNTRY.toString(), countryAutoText.getText().toString());
+		savedStateEdit.putString(MainActivityElements.NAME.toString(), nameText.getText().toString());
+		savedStateEdit.putInt(MainActivityElements.ADDRESS_NUM.toString(), number);
+		savedStateEdit.putString(MainActivityElements.ADDRESS.toString(), addressText.getText().toString());
+		savedStateEdit.putFloat(MainActivityElements.PRICE.toString(), (float) price);
+		savedStateEdit.putString(MainActivityElements.TOWN.toString(), townText.getText().toString());
 		
-		savedState.commit();
+		savedStateEdit.apply();
+	}
+
+	private void setOrientationView(int orientation) {
+		if (orientation == Configuration.ORIENTATION_LANDSCAPE)
+			setContentView(R.layout.activity_main_hor);
+		else
+			setContentView(R.layout.activity_main_vert);
+		
+		setViews();
+	}
+
+	private void setViews() {
+		foodTypeSpinner = (Spinner) findViewById(R.id.foodTypeSpinner);
+		roadTypeSpinner = (Spinner) findViewById(R.id.typeRoadSpinner);
+		coussineSpinner = (Spinner) findViewById(R.id.coussineSpinner);
+		nameText = (EditText) findViewById(R.id.nameText);
+		numberText = (EditText) findViewById(R.id.numberText);
+		addressText = (EditText) findViewById(R.id.addressText);
+		priceText = (EditText) findViewById(R.id.priceText);
+		townText = (EditText) findViewById(R.id.townText);
+		searchButton = (ImageButton) findViewById(R.id.searchButton);
+		countryAutoText = (AutoCompleteTextView) findViewById(R.id.countryAutoText);
+		
+		if (countries_adapter == null) {
+			String[] countries = Locale.getISOCountries();
+			 
+			for (int i = 0; i < countries.length; ++i)
+				countries[i] = new Locale("", countries[i]).getDisplayCountry();
+	
+			countries_adapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, countries);
+		}
+		
+		countryAutoText.setAdapter(countries_adapter);
+		
+		searchButton.setOnClickListener(this);
+		
+		restoreState();
 	}
 }

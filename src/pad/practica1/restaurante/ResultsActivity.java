@@ -1,16 +1,12 @@
 package pad.practica1.restaurante;
 
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import pad.practica1.restaurante.MainActivity.MainActivityElements;
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v4.app.NavUtils;
-import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
@@ -37,59 +33,16 @@ public class ResultsActivity extends Activity {
 				roadType = intent.getStringExtra(MainActivityElements.ROAD_TYPE.toString()),
 				town = intent.getStringExtra(MainActivityElements.TOWN.toString());
 		int number = intent.getIntExtra(MainActivityElements.ADDRESS_NUM.toString(), -1);
-		double price = intent.getIntExtra(MainActivityElements.PRICE.toString(), -1);
+		double price = intent.getDoubleExtra(MainActivityElements.PRICE.toString(), -1);
 
-		final ListView listview = (ListView) findViewById(R.id.resultsListViews);
-
-		final ArrayList<String> list = new ArrayList<String>();
+		ListView listview = (ListView) findViewById(R.id.resultsListViews);
+		List<String> list = new LinkedList<String>();
+		
 		for (int i = 0; i < restaurants.length; ++i) {
 			if (restaurants[i].match(address, country, coussine, foodType, name, number, price, roadType, town))
 				list.add(restaurants[i].getName());
 		}
-
-		final StableArrayAdapter adapter = new StableArrayAdapter(this,
-				android.R.layout.simple_list_item_1, list);
-		listview.setAdapter(adapter);
-	}
-
-	@Override
-	public boolean onOptionsItemSelected(MenuItem item) {
-		switch (item.getItemId()) {
-		case android.R.id.home:
-			// This ID represents the Home or Up button. In the case of this
-			// activity, the Up button is shown. Use NavUtils to allow users
-			// to navigate up one level in the application structure. For
-			// more details, see the Navigation pattern on Android Design:
-			//
-			// http://developer.android.com/design/patterns/navigation.html#up-vs-back
-			//
-			NavUtils.navigateUpFromSameTask(this);
-			return true;
-		}
-		return super.onOptionsItemSelected(item);
-	}
-
-	private class StableArrayAdapter extends ArrayAdapter<String> {
-		HashMap<String, Integer> mIdMap = new HashMap<String, Integer>();
-
-		public StableArrayAdapter(Context context, int textViewResourceId,
-				List<String> objects) {
-			super(context, textViewResourceId, objects);
-			for (int i = 0; i < objects.size(); ++i) {
-				mIdMap.put(objects.get(i), i);
-			}
-		}
-
-		@Override
-		public long getItemId(int position) {
-			String item = getItem(position);
-			return mIdMap.get(item);
-		}
-
-		@Override
-		public boolean hasStableIds() {
-			return true;
-		}
-
+		
+		listview.setAdapter(new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, list));
 	}
 }

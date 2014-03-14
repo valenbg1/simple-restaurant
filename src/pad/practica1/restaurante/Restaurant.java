@@ -29,31 +29,31 @@ public class Restaurant {
 	public boolean match(String address, String country, String coussine,
 			String foodType, String name, int number, double price,
 			String roadType, String town) {
-		if ((address != null) && (!address.equals("")) && (!address.equalsIgnoreCase(this.address)))
+		if ((!address.equals("")) && (!address.equalsIgnoreCase(this.address)))
 			return false;
 		
-		if ((country != null) && (!country.equals("")) && (!country.equalsIgnoreCase(this.country)))
+		if ((!country.equals("")) && (!country.equalsIgnoreCase(this.country)))
 			return false;
 		
-		if ((coussine != null) && (!coussine.equals("")) && (!coussine.equalsIgnoreCase(this.coussine)))
+		if ((!coussine.equals("")) && (!coussine.equalsIgnoreCase(this.coussine)))
 			return false;
 		
-		if ((foodType != null) && (!foodType.equals("")) && (!foodType.equalsIgnoreCase(this.foodType)))
+		if ((!foodType.equals("")) && (!foodType.equalsIgnoreCase(this.foodType)))
 			return false;
 		
-		if ((name != null) && (!name.equals("")) && (!name.equalsIgnoreCase(this.name)))
+		if ((!name.equals("")) && (!name.equalsIgnoreCase(this.name)))
 			return false;
 		
-		if ((town != null) && (!town.equals("")) && (!town.equalsIgnoreCase(this.town)))
+		if ((!town.equals("")) && (!town.equalsIgnoreCase(this.town)))
 			return false;
 		
-		if ((roadType != null) && (!roadType.equals("")) && (!roadType.equalsIgnoreCase(this.roadType)))
+		if ((!roadType.equals("")) && (!roadType.equalsIgnoreCase(this.roadType)))
 			return false;
 		
-		if ((number > 0) && (Math.abs(number - this.number) > 10))
+		if ((number > 0) && (Math.abs(number - this.number) > R.string.number_error_limit))
 			return false;
 		
-		if ((price > 0) && (Math.abs(price - this.price) > 20))
+		if ((price > 0) && (Math.abs(price - this.price) > R.string.price_error_limit))
 			return false;
 		
 		return true;

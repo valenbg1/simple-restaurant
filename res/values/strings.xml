@@ -33,5 +33,7 @@
     <string name="title_activity_results">ResultsActivity</string>
     <string name="action_settings">Settings</string>
     <string name="desc_searchButton">Buscar</string>
+    <string name="number_error_limit">10</string>
+    <string name="price_error_limit">20</string>
 
 </resources>

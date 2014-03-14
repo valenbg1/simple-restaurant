@@ -1,0 +1,100 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/scrollView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <EditText
+            android:id="@+id/nameText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/hint_name"
+            android:inputType="textCapSentences" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal" >
+
+            <AutoCompleteTextView
+                android:id="@+id/countryAutoText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/hint_country"
+                android:inputType="textCapSentences" />
+
+            <EditText
+                android:id="@+id/townText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:hint="@string/hint_town"
+                android:inputType="textCapSentences" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="36dp" >
+
+            <Spinner
+                android:id="@+id/typeRoadSpinner"
+                android:layout_width="88dp"
+                android:layout_height="match_parent"
+                android:entries="@array/array_road_type" />
+
+            <EditText
+                android:id="@+id/addressText"
+                android:layout_width="176dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.18"
+                android:ems="10"
+                android:hint="@string/hint_address"
+                android:inputType="textCapSentences" />
+
+            <EditText
+                android:id="@+id/numberText"
+                android:layout_width="0dip"
+                android:layout_height="match_parent"
+                android:layout_weight="1.27"
+                android:ems="10"
+                android:hint="@string/hint_number"
+                android:inputType="number" />
+        </LinearLayout>
+
+        <Spinner
+            android:id="@+id/foodTypeSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:entries="@array/array_food_type" />
+
+        <Spinner
+            android:id="@+id/coussineSpinner"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:entries="@array/array_coussine" />
+
+        <EditText
+            android:id="@+id/priceText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:ems="10"
+            android:hint="@string/hint_price_per_people"
+            android:inputType="numberDecimal" />
+
+        <ImageButton
+            android:id="@+id/searchButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:contentDescription="@string/desc_searchButton"
+            android:src="@android:drawable/ic_menu_search" />
+    </LinearLayout>
+
+</ScrollView>
