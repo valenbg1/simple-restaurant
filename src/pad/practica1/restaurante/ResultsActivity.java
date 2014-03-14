@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import pad.practica1.restaurante.MainActivity.IntentExtras;
+import pad.practica1.restaurante.MainActivity.MainActivityElements;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
@@ -16,10 +16,10 @@ import android.widget.ListView;
 
 public class ResultsActivity extends Activity {
 	public static final Restaurant[] restaurants = {
-		new Restaurant("Verdadera", "España", "española", "tradicional", "El falso", 123, 21.50, "Calle", "Madrid"),
-		new Restaurant("Falsa", "España", "española", "tradicional", "El falso 2", 124, 11.50, "Calle", "Madrid"),
-		new Restaurant("Verdadera", "España", "china", "tradicional", "El falso 3", 125, 1.50, "Avenida", "Badajoz"),
-		new Restaurant("Falsa", "México", "japonesa", "creativa", "El falso 4", 146, 15.50, "Calle", "Sevilla")
+		new Restaurant("Verdadera", "EspaÃ±a", "espaÃ±ola", "tradicional", "El falso", 123, 21.50, "Calle", "Madrid"),
+		new Restaurant("Falsa", "EspaÃ±a", "espaÃ±ola", "tradicional", "El falso 2", 124, 11.50, "Calle", "Madrid"),
+		new Restaurant("Verdadera", "EspaÃ±a", "china", "tradicional", "El falso 3", 125, 1.50, "Avenida", "Badajoz"),
+		new Restaurant("Falsa", "MÃ©xico", "japonesa", "creativa", "El falso 4", 146, 15.50, "Calle", "Sevilla")
 	};
 	
 	@Override
@@ -29,15 +29,15 @@ public class ResultsActivity extends Activity {
 
 		Intent intent = getIntent();
 		
-		String address = intent.getStringExtra(IntentExtras.ADDRESS.toString()),
-				country = intent.getStringExtra(IntentExtras.COUNTRY.toString()),
-				coussine = intent.getStringExtra(IntentExtras.COUSSINE.toString()),
-				foodType = intent.getStringExtra(IntentExtras.FOOD_TYPE.toString()),
-				name = intent.getStringExtra(IntentExtras.NAME.toString()),
-				roadType = intent.getStringExtra(IntentExtras.ROAD_TYPE.toString()),
-				town = intent.getStringExtra(IntentExtras.TOWN.toString());
-		int number = intent.getIntExtra(IntentExtras.ADDRESS_NUM.toString(), -1);
-		double price = intent.getIntExtra(IntentExtras.PRICE.toString(), -1);
+		String address = intent.getStringExtra(MainActivityElements.ADDRESS.toString()),
+				country = intent.getStringExtra(MainActivityElements.COUNTRY.toString()),
+				coussine = intent.getStringExtra(MainActivityElements.COUSSINE.toString()),
+				foodType = intent.getStringExtra(MainActivityElements.FOOD_TYPE.toString()),
+				name = intent.getStringExtra(MainActivityElements.NAME.toString()),
+				roadType = intent.getStringExtra(MainActivityElements.ROAD_TYPE.toString()),
+				town = intent.getStringExtra(MainActivityElements.TOWN.toString());
+		int number = intent.getIntExtra(MainActivityElements.ADDRESS_NUM.toString(), -1);
+		double price = intent.getIntExtra(MainActivityElements.PRICE.toString(), -1);
 
 		final ListView listview = (ListView) findViewById(R.id.resultsListViews);
 
