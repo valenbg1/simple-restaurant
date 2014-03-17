@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.res.Configuration;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
@@ -42,12 +43,18 @@ public class MainActivity extends Activity implements OnClickListener {
 		double price;
 		
 		try {
-			price = priceText.getText().toString().equals("") ? -1.0 : Double.valueOf(priceText.getText().toString());
-			number = numberText.getText().toString().equals("") ? -1 : Integer.valueOf(numberText.getText().toString());
+			price = Double.valueOf(priceText.getText().toString());
 		} catch (NumberFormatException ex) {
 			price = -1.0;
+		}
+		try{
+			number = Integer.valueOf(numberText.getText().toString());
+		} catch (NumberFormatException ex) {
 			number = -1;
 		}
+		
+		
+		Log.i("onClick","Valor de price , num: "+price+", "+number);
 			
 		intent.putExtra(MainActivityElements.FOOD_TYPE.toString(), foodTypeSpinner.getSelectedItem().toString());
 		intent.putExtra(MainActivityElements.ROAD_TYPE.toString(), roadTypeSpinner.getSelectedItem().toString());
@@ -137,12 +144,17 @@ public class MainActivity extends Activity implements OnClickListener {
 		double price;
 		
 		try {
-			price = priceText.getText().toString().equals("") ? -1.0 : Double.valueOf(priceText.getText().toString());
-			number = numberText.getText().toString().equals("") ? -1 : Integer.valueOf(numberText.getText().toString());
+			price = Double.valueOf(priceText.getText().toString());
 		} catch (NumberFormatException ex) {
 			price = -1.0;
+		}
+		try{
+			number = Integer.valueOf(numberText.getText().toString());
+		} catch (NumberFormatException ex) {
 			number = -1;
 		}
+		
+		Log.i("saveState","Valor de price , num: "+price+", "+number);
 		
 		savedStateEdit.putInt(MainActivityElements.FOOD_TYPE.toString(), foodTypeSpinner.getSelectedItemPosition());
 		savedStateEdit.putInt(MainActivityElements.ROAD_TYPE.toString(), roadTypeSpinner.getSelectedItemPosition());
