@@ -12,10 +12,11 @@ import android.widget.ListView;
 
 public class ResultsActivity extends Activity {
 	public static final Restaurant[] restaurants = {
-		new Restaurant("Verdadera", "España", "española", "tradicional", "El falso", 123, 21.50, "Calle", "Madrid"),
-		new Restaurant("Falsa", "España", "española", "tradicional", "El falso 2", 124, 11.50, "Calle", "Madrid"),
-		new Restaurant("Verdadera", "España", "china", "tradicional", "El falso 3", 125, 1.50, "Avenida", "Badajoz"),
-		new Restaurant("Falsa", "México", "japonesa", "creativa", "El falso 4", 146, 15.50, "Calle", "Sevilla")
+		new Restaurant("Restaurante1", "tradicional" , "española", "calle", "Falsa", 123, "Madrid", "Madrid", 20.0),
+		new Restaurant("Restaurante12", "tradicional" , "española", "calle", "Falsa", 124, "Madrid", "Madrid", 10.0),
+		new Restaurant("Restaurante13", "creativa" , "india", "avenida", "La Falsa", 23, "Madrid", "Madrid", 25.0),
+		new Restaurant("Restaurante14", "tradicional" , "española", "calle", "Falsa", 125, "Madrid", "Madrid", 27.0),
+		new Restaurant("Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
 	};
 	
 	@Override

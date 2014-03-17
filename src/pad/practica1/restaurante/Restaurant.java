@@ -11,9 +11,9 @@ public class Restaurant {
 	private String roadType;
 	private String town;
 	
-	public Restaurant(String address, String country, String coussine,
-			String foodType, String name, int number, double price,
-			String roadType, String town) {
+	public Restaurant(String name, String foodType, String coussine, String roadType,
+			String address, int number, String town, String country, double price) {
+		
 		super();
 		this.address = address;
 		this.country = country;
