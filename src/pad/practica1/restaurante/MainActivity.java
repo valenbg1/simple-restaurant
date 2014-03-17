@@ -158,10 +158,7 @@ public class MainActivity extends Activity implements OnClickListener {
 	}
 
 	private void setOrientationView(int orientation) {
-		if (orientation == Configuration.ORIENTATION_LANDSCAPE)
-			setContentView(R.layout.activity_main_hor);
-		else
-			setContentView(R.layout.activity_main_vert);
+		setContentView(R.layout.activity_main);
 		
 		setViews();
 	}
