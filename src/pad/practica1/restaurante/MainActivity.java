@@ -53,9 +53,6 @@ public class MainActivity extends Activity implements OnClickListener {
 			number = -1;
 		}
 		
-		
-		Log.i("onClick","Valor de price , num: "+price+", "+number);
-			
 		intent.putExtra(MainActivityElements.FOOD_TYPE.toString(), foodTypeSpinner.getSelectedItem().toString());
 		intent.putExtra(MainActivityElements.ROAD_TYPE.toString(), roadTypeSpinner.getSelectedItem().toString());
 		intent.putExtra(MainActivityElements.COUSSINE.toString(), coussineSpinner.getSelectedItem().toString());

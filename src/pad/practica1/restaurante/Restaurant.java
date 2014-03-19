@@ -1,5 +1,7 @@
 package pad.practica1.restaurante;
 
+import android.content.Context;
+
 
 public class Restaurant {
 	private static final int NUMBER_ERROR_LIMIT = 10;
@@ -15,7 +17,9 @@ public class Restaurant {
 	private String roadType;
 	private String town;
 	
-	public Restaurant(String name, String foodType, String coussine, String roadType,
+	private String default_value;
+	
+	public Restaurant(Context context, String name, String foodType, String coussine, String roadType,
 			String address, int number, String town, String country, double price) {
 		
 		super();
@@ -29,6 +33,7 @@ public class Restaurant {
 		this.roadType = roadType;
 		this.town = town;
 		
+		this.default_value = context.getResources().getString(R.string.default_value);
 	}
 	
 	public boolean match(String address, String country, String coussine,
@@ -40,10 +45,12 @@ public class Restaurant {
 		if ((!country.equals("")) && (!country.equalsIgnoreCase(this.country)))
 			return false;
 		
-		if ((!coussine.equals("")) && (!coussine.equalsIgnoreCase(this.coussine)))
+		if ((!coussine.equals("") && !coussine.equals(default_value)) 
+				&& (!coussine.equalsIgnoreCase(this.coussine)))
 			return false;
 		
-		if ((!foodType.equals("")) && (!foodType.equalsIgnoreCase(this.foodType)))
+		if ((!foodType.equals("") && !coussine.equals(default_value)) 
+				&& (!foodType.equalsIgnoreCase(this.foodType)))
 			return false;
 		
 		if ((!name.equals("")) && (!name.equalsIgnoreCase(this.name)))
@@ -52,7 +59,8 @@ public class Restaurant {
 		if ((!town.equals("")) && (!town.equalsIgnoreCase(this.town)))
 			return false;
 		
-		if ((!roadType.equals("")) && (!roadType.equalsIgnoreCase(this.roadType)))
+		if ((!roadType.equals("") && !coussine.equals(default_value)) 
+				&& (!roadType.equalsIgnoreCase(this.roadType)))
 			return false;
 		
 		if ((number > 0) && (Math.abs(number - this.number) > NUMBER_ERROR_LIMIT))
