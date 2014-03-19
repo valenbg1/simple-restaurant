@@ -1,6 +1,7 @@
 package pad.practica1.restaurante;
 
 import android.content.Context;
+import android.util.Log;
 
 
 public class Restaurant {
@@ -45,12 +46,10 @@ public class Restaurant {
 		if ((!country.equals("")) && (!country.equalsIgnoreCase(this.country)))
 			return false;
 		
-		if ((!coussine.equals("") && !coussine.equals(default_value)) 
-				&& (!coussine.equalsIgnoreCase(this.coussine)))
+		if ((!coussine.equals(default_value)) && (!coussine.equalsIgnoreCase(this.coussine)))
 			return false;
 		
-		if ((!foodType.equals("") && !coussine.equals(default_value)) 
-				&& (!foodType.equalsIgnoreCase(this.foodType)))
+		if ((!foodType.equals(default_value)) && (!foodType.equalsIgnoreCase(this.foodType)))
 			return false;
 		
 		if ((!name.equals("")) && (!name.equalsIgnoreCase(this.name)))
@@ -59,8 +58,7 @@ public class Restaurant {
 		if ((!town.equals("")) && (!town.equalsIgnoreCase(this.town)))
 			return false;
 		
-		if ((!roadType.equals("") && !coussine.equals(default_value)) 
-				&& (!roadType.equalsIgnoreCase(this.roadType)))
+		if ((!roadType.equals(default_value)) && (!roadType.equalsIgnoreCase(this.roadType)))
 			return false;
 		
 		if ((number > 0) && (Math.abs(number - this.number) > NUMBER_ERROR_LIMIT))
