@@ -1,6 +1,10 @@
 package pad.practica1.restaurante;
 
+
 public class Restaurant {
+	private static final int NUMBER_ERROR_LIMIT = 10;
+	private static final int PRICE_ERROR_LIMIT = 10;
+	
 	private String address;
 	private String country;
 	private String coussine;
@@ -24,6 +28,7 @@ public class Restaurant {
 		this.price = price;
 		this.roadType = roadType;
 		this.town = town;
+		
 	}
 	
 	public boolean match(String address, String country, String coussine,
@@ -50,10 +55,10 @@ public class Restaurant {
 		if ((!roadType.equals("")) && (!roadType.equalsIgnoreCase(this.roadType)))
 			return false;
 		
-		if ((number > 0) && (Math.abs(number - this.number) > R.string.number_error_limit))
+		if ((number > 0) && (Math.abs(number - this.number) > NUMBER_ERROR_LIMIT))
 			return false;
 		
-		if ((price > 0) && (Math.abs(price - this.price) > R.string.price_error_limit))
+		if ((price > 0) && (Math.abs(price - this.price) > PRICE_ERROR_LIMIT))
 			return false;
 		
 		return true;
@@ -61,6 +66,10 @@ public class Restaurant {
 
 	public String getAddress() {
 		return address;
+	}
+	
+	public String getFullAddress() {
+		return roadType+" "+address+" "+number+", "+town;
 	}
 
 	public String getCountry() {

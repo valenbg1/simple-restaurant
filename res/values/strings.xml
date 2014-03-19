@@ -10,12 +10,14 @@
     <string name="hint_price_per_people">Precio por persona</string>
 
     <string-array name="array_road_type">
+        <item>Cualquiera</item>
         <item>Avenida</item>
         <item>Calle</item>
         <item>Carretera</item>
         <item>Travesía</item>
     </string-array>
     <string-array name="array_coussine">
+        <item>Cualquiera</item>
         <item>Americana</item>
         <item>China</item>
         <item>Española</item>
@@ -26,6 +28,7 @@
         <item>Mexicana</item>
     </string-array>
     <string-array name="array_food_type">
+        <item>Cualquiera</item>
         <item>Creativa</item>
         <item>Tradicional</item>
     </string-array>
@@ -33,7 +36,6 @@
     <string name="title_activity_results">ResultsActivity</string>
     <string name="action_settings">Settings</string>
     <string name="desc_searchButton">Buscar</string>
-    <string name="number_error_limit">10</string>
-    <string name="price_error_limit">20</string>
+    <string name="hint_coussine">Nacionalidad</string>
 
 </resources>
