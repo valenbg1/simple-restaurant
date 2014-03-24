@@ -145,7 +145,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		} catch (NumberFormatException ex) {
 			price = -1.0;
 		}
-		try{
+		
+		try {
 			number = Integer.valueOf(numberText.getText().toString());
 		} catch (NumberFormatException ex) {
 			number = -1;

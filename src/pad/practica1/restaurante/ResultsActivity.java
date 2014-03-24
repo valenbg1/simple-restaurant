@@ -15,7 +15,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 public class ResultsActivity extends Activity {
-
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -53,7 +52,7 @@ public class ResultsActivity extends Activity {
 				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
 				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
 				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-};
+		};
 
 		Intent intent = getIntent();
 		
@@ -82,7 +81,6 @@ public class ResultsActivity extends Activity {
 		private ArrayList<Restaurant> items;
 		private LayoutInflater inflater;
 		
-		
 		public RestaurantAdapter(Context context, int resource, ArrayList<Restaurant> items) {
 			super(context, resource, items);
 			this.items = items;
@@ -92,7 +90,7 @@ public class ResultsActivity extends Activity {
 		@Override
 		public View getView(int position, View convertView, ViewGroup parent) {
 			View vi = convertView;
-			if(convertView == null)
+			if (convertView == null)
 				vi = inflater.inflate(R.layout.list_restaurant_item, null);
 			
 			TextView name = (TextView) vi.findViewById(R.id.nameResult);
@@ -102,7 +100,7 @@ public class ResultsActivity extends Activity {
 			
 			Restaurant item = items.get(position);
 			
-			if(item != null){
+			if (item != null) {
 				name.setText(item.getName());
 				address.setText(item.getFullAddress());
 				coussine.setText(item.getCoussine());
@@ -111,8 +109,5 @@ public class ResultsActivity extends Activity {
 			
 			return vi;
 		}
-	
-		
 	}
-	
 }

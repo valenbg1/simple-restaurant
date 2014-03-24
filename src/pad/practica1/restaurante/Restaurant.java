@@ -1,7 +1,6 @@
 package pad.practica1.restaurante;
 
 import android.content.Context;
-import android.util.Log;
 
 
 public class Restaurant {

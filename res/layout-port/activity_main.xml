@@ -15,6 +15,7 @@
             android:ems="10"
             android:hint="@string/hint_name"
             android:inputType="textCapSentences" />
+        <requestFocus />
 
         <LinearLayout
             android:layout_width="wrap_content"
