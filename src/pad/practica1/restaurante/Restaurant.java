@@ -18,6 +18,20 @@ public class Restaurant {
 	private String town;
 	
 	private String default_value;
+	public Restaurant(){
+		super();
+		this.address = "";
+		this.country = "";
+		this.coussine = "";
+		this.foodType = "";
+		this.name = "";
+		this.number = -1;
+		this.price = -1;
+		this.roadType = "";
+		this.town = "";
+		this.default_value = "";
+		
+	}
 	
 	public Restaurant(Context context, String name, String foodType, String coussine, String roadType,
 			String address, int number, String town, String country, double price) {
@@ -64,6 +78,37 @@ public class Restaurant {
 			return false;
 		
 		if ((price > 0) && (Math.abs(price - this.price) > PRICE_ERROR_LIMIT))
+			return false;
+		
+		return true;
+	}
+	
+	public boolean match(Restaurant r) {
+		if ((!r.address.equals("")) && (!r.address.equalsIgnoreCase(this.address)))
+			return false;
+		
+		if ((!r.country.equals("")) && (!r.country.equalsIgnoreCase(this.country)))
+			return false;
+		
+		if ((!r.coussine.equals(default_value)) && (!r.coussine.equalsIgnoreCase(this.coussine)))
+			return false;
+		
+		if ((!r.foodType.equals(default_value)) && (!r.foodType.equalsIgnoreCase(this.foodType)))
+			return false;
+		
+		if ((!r.name.equals("")) && (!r.name.equalsIgnoreCase(this.name)))
+			return false;
+		
+		if ((!r.town.equals("")) && (!r.town.equalsIgnoreCase(this.town)))
+			return false;
+		
+		if ((!r.roadType.equals(default_value)) && (!r.roadType.equalsIgnoreCase(this.roadType)))
+			return false;
+		
+		if ((r.number > 0) && (Math.abs(r.number - this.number) > NUMBER_ERROR_LIMIT))
+			return false;
+		
+		if ((r.price > 0) && (Math.abs(r.price - this.price) > PRICE_ERROR_LIMIT))
 			return false;
 		
 		return true;
