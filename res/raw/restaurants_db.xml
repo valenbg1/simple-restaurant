@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<restaurant>
+	 	<address>Falsa</address>
+		<country>España</country>
+		<coussine>Española</coussine>
+		<foodType>Tradicional</foodType>
+		<name>El Bar</name>
+		<number>25</number>
+		<price>15.0</price>
+		<roadType>Calle</roadType>
+		<town>Madrid</town>
+	</restaurant>
+	<restaurant>
+	 	<address>Falsa</address>
+		<country>España</country>
+		<coussine>China</coussine>
+		<foodType>Tradicional</foodType>
+		<name>El Chino</name>
+		<number>24</number>
+		<price>5.0</price>
+		<roadType>Calle</roadType>
+		<town>Madrid</town>
+	</restaurant>
+	<restaurant>
+	 	<address>Falsa</address>
+		<country>España</country>
+		<coussine>Española</coussine>
+		<foodType>Tradicional</foodType>
+		<name>El Bareto</name>
+		<number>26</number>
+		<price>12.0</price>
+		<roadType>Calle</roadType>
+		<town>Madrid</town>
+	</restaurant>
+	<restaurant>
+	 	<address>Falsa</address>
+		<country>España</country>
+		<coussine>Española</coussine>
+		<foodType>Tradicional</foodType>
+		<name>El Sitio</name>
+		<number>12</number>
+		<price>15.0</price>
+		<roadType>Avenida</roadType>
+		<town>Madrid</town>
+	</restaurant>
+</resources>

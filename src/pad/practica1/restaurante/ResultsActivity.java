@@ -2,11 +2,10 @@ package pad.practica1.restaurante;
 
 import java.util.ArrayList;
 
-import pad.practica1.restaurante.MainActivity.MainActivityElements;
 import android.app.ActionBar.LayoutParams;
 import android.app.ListActivity;
 import android.content.Context;
-import android.content.Intent;
+import android.content.res.XmlResourceParser;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -24,8 +23,6 @@ public class ResultsActivity extends ListActivity {
 		super.onCreate(savedInstanceState);
 	
 		final Restaurant[] restaurants = getRestaurants();
-
-		Intent intent = getIntent();
 		
         // Create a progress bar to display while the list loads
         ProgressBar progressBar = new ProgressBar(this);
@@ -38,21 +35,14 @@ public class ResultsActivity extends ListActivity {
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
         root.addView(progressBar);
 		
-		String address = intent.getStringExtra(MainActivityElements.ADDRESS.toString()),
-				country = intent.getStringExtra(MainActivityElements.COUNTRY.toString()),
-				coussine = intent.getStringExtra(MainActivityElements.COUSSINE.toString()),
-				foodType = intent.getStringExtra(MainActivityElements.FOOD_TYPE.toString()),
-				name = intent.getStringExtra(MainActivityElements.NAME.toString()),
-				roadType = intent.getStringExtra(MainActivityElements.ROAD_TYPE.toString()),
-				town = intent.getStringExtra(MainActivityElements.TOWN.toString());
-		int number = intent.getIntExtra(MainActivityElements.ADDRESS_NUM.toString(), -1);
-		double price = intent.getDoubleExtra(MainActivityElements.PRICE.toString(), -1);
-
+        RestaurantApplication app = (RestaurantApplication)getApplication();
+        Restaurant stuff = app.getStuff();
+		
 		ListView listview = getListView();
 		ArrayList<Restaurant> list = new ArrayList<Restaurant>();
 		
 		for (int i = 0; i < restaurants.length; ++i) {
-			if (restaurants[i].match(address, country, coussine, foodType, name, number, price, roadType, town))
+			if (restaurants[i].match(stuff))
 				list.add(restaurants[i]);
 		}
 		
@@ -94,39 +84,49 @@ public class ResultsActivity extends ListActivity {
 	}
 
 	private Restaurant[] getRestaurants(){
-		return new Restaurant[]{
-				new Restaurant(this, "Restaurante1", "tradicional" , "española", "calle", "Falsa", 123, "Madrid", "Madrid", 20.0),
-				new Restaurant(this, "Restaurante12", "tradicional" , "española", "calle", "Falsa", 124, "Madrid", "Madrid", 10.0),
-				new Restaurant(this, "Restaurante13", "creativa" , "india", "avenida", "La Falsa", 23, "Madrid", "Madrid", 25.0),
-				new Restaurant(this, "Restaurante14", "tradicional" , "española", "calle", "Falsa", 125, "Madrid", "Madrid", 27.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
-		};
+		XmlResourceParser xml = getResources().getXml(R.raw.restaurants_db);
+		
+		// TODO: Todo
+		try{
+			
+		}catch(Exception e){
+			
+		}
+		
+		return null;
+//		return new Restaurant[]{
+//				new Restaurant(this, "Restaurante1", "tradicional" , "española", "calle", "Falsa", 123, "Madrid", "Madrid", 20.0),
+//				new Restaurant(this, "Restaurante12", "tradicional" , "española", "calle", "Falsa", 124, "Madrid", "Madrid", 10.0),
+//				new Restaurant(this, "Restaurante13", "creativa" , "india", "avenida", "La Falsa", 23, "Madrid", "Madrid", 25.0),
+//				new Restaurant(this, "Restaurante14", "tradicional" , "española", "calle", "Falsa", 125, "Madrid", "Madrid", 27.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//				new Restaurant(this, "Restaurante15", "creativa" , "china", "calle", "Falsa", 122, "Madrid", "Madrid", 15.0),
+//		};
 	}
 
 	@Override 

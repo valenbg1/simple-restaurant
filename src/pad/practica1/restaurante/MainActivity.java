@@ -53,15 +53,21 @@ public class MainActivity extends Activity implements OnClickListener {
 			number = -1;
 		}
 		
-		intent.putExtra(MainActivityElements.FOOD_TYPE.toString(), foodTypeSpinner.getSelectedItem().toString());
-		intent.putExtra(MainActivityElements.ROAD_TYPE.toString(), roadTypeSpinner.getSelectedItem().toString());
-		intent.putExtra(MainActivityElements.COUSSINE.toString(), coussineSpinner.getSelectedItem().toString());
-		intent.putExtra(MainActivityElements.COUNTRY.toString(), countryAutoText.getText().toString());
-		intent.putExtra(MainActivityElements.NAME.toString(), nameText.getText().toString());
-		intent.putExtra(MainActivityElements.ADDRESS_NUM.toString(), number);
-		intent.putExtra(MainActivityElements.ADDRESS.toString(), addressText.getText().toString());
-		intent.putExtra(MainActivityElements.PRICE.toString(), price);
-		intent.putExtra(MainActivityElements.TOWN.toString(), townText.getText().toString());
+		RestaurantApplication app = (RestaurantApplication) getApplication();
+		Restaurant stuff = new Restaurant();
+		
+		
+		stuff.setFoodType(foodTypeSpinner.getSelectedItem().toString());
+		stuff.setRoadType(roadTypeSpinner.getSelectedItem().toString());
+		stuff.setCoussine(coussineSpinner.getSelectedItem().toString());
+		stuff.setCountry(countryAutoText.getText().toString());
+		stuff.setName(nameText.getText().toString());
+		stuff.setNumber(number);
+		stuff.setAddress(addressText.getText().toString());
+		stuff.setPrice(price);
+		stuff.setTown(townText.getText().toString());
+		
+		app.setStuff(stuff);
 		
 		startActivity(intent);
 	}
