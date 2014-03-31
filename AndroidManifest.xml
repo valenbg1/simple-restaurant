@@ -31,6 +31,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="pad.practica1.restaurante.MainActivity" />
         </activity>
+        <activity android:name="RestaurantDetailActivity"></activity>
     </application>
 
 </manifest>

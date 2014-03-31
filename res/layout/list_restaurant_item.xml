@@ -23,6 +23,7 @@
         android:id="@+id/addressResult"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/nameResult"
         android:layout_below="@id/nameResult"
         android:layout_marginTop="1dip"
         android:text="@string/hint_address"
