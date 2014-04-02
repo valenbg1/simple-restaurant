@@ -16,7 +16,8 @@ public class RestaurantDetailActivity extends Activity {
 	private ImageView image;
 	
 	private Restaurant fetchCurrentRestaurant() {
-		return new Restaurant(this, "", "", "", "", "", 0, "", "", 0.0);
+		RestaurantApplication app = (RestaurantApplication) getApplication();
+		return app.getCurrentRestaurant();
 	}
 	
 	@Override

@@ -1,5 +1,6 @@
 package pad.practica1.restaurante;
 
+import java.util.ArrayList;
 import java.util.Locale;
 
 import android.app.Activity;
@@ -56,6 +57,8 @@ public class MainActivity extends Activity implements OnClickListener {
 		RestaurantApplication app = (RestaurantApplication) getApplication();
 		Restaurant stuff = new Restaurant();
 		
+		// Vease flush restaurants (Fdo. Valen)
+		app.setRestaurants(new ArrayList<Restaurant>());		
 		
 		stuff.setFoodType(foodTypeSpinner.getSelectedItem().toString());
 		stuff.setRoadType(roadTypeSpinner.getSelectedItem().toString());
@@ -67,7 +70,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		stuff.setPrice(price);
 		stuff.setTown(townText.getText().toString());
 		
-		app.setStuff(stuff);
+		app.setCurrentRestaurant(stuff);
 		
 		startActivity(intent);
 	}

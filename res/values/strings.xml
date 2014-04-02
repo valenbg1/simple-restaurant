@@ -38,6 +38,7 @@
     <string name="action_settings">Settings</string>
     <string name="desc_searchButton">Buscar</string>
     <string name="hint_coussine">Nacionalidad</string>
+    <string name="restaurant_detail_activity_label">Detalles</string>
     
 
 </resources>
