@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <restaurant
+        name="El Bar"
+        address="Falsa"
+        country="España"
+        coussine="Española"
+        food_type="Tradicional"
+        address_num="25"
+        price="15.0"
+        road_type="Calle"
+        town="Madrid" />
+    <restaurant
+        name="El Chino"
+        address="Falsa"
+        country="España"
+        coussine="China"
+        food_type="Tradicional"
+        address_num="24"
+        price="5.0"
+        road_type="Calle"
+        town="Madrid" />
+    <restaurant
+        name="El Bareto"
+        address="Falsa"
+        country="España"
+        coussine="Española"
+        food_type="Tradicional"
+        address_num="26"
+        price="12.0"
+        road_type="Calle"
+        town="Madrid" />
+    <restaurant
+        name="El Sitio"
+        address="Falsa"
+        country="España"
+        coussine="Española"
+        food_type="Tradicional"
+        address_num="12"
+        price="15.0"
+        road_type="Avenida"
+        town="Madrid" />
+
+</resources>

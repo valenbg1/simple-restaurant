@@ -1,9 +1,16 @@
 package pad.practica1.restaurante;
 
+import java.util.Locale;
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 
 public class Restaurant {
+	public enum RestaurantAttr {
+		NAME, ADDRESS, ROAD_TYPE, ADDRESS_NUM, COUSSINE, FOOD_TYPE, 
+		COUNTRY, TOWN, PRICE
+	}
+	
 	private static final int NUMBER_ERROR_LIMIT = 10;
 	private static final int PRICE_ERROR_LIMIT = 10;
 	
@@ -112,6 +119,40 @@ public class Restaurant {
 			return false;
 		
 		return true;
+	}
+	
+	@SuppressLint("DefaultLocale")
+	public void setAttribute(String attr, String value){
+		switch (RestaurantAttr.valueOf(attr.toUpperCase(Locale.ENGLISH))) {
+		case ADDRESS:
+			this.setAddress(value);
+			break;
+		case ADDRESS_NUM:
+			this.setNumber(Integer.valueOf(value));
+			break;
+		case COUNTRY:
+			this.setCountry(value);
+			break;
+		case COUSSINE:
+			this.setCoussine(value);
+			break;
+		case FOOD_TYPE:
+			this.setFoodType(value);
+			break;
+		case NAME:
+			this.setName(value);
+			break;
+		case PRICE:
+			this.setPrice(Double.valueOf(value));
+			break;
+		case ROAD_TYPE:
+			this.setRoadType(value);
+			break;
+		case TOWN:
+			this.setTown(value);
+			break;
+		}  
+		
 	}
 
 	public String getAddress() {

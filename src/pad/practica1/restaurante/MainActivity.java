@@ -3,6 +3,7 @@ package pad.practica1.restaurante;
 import java.util.ArrayList;
 import java.util.Locale;
 
+import pad.practica1.restaurante.Restaurant.RestaurantAttr;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -18,10 +19,6 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 
 public class MainActivity extends Activity implements OnClickListener {
-	public enum MainActivityElements {
-		NAME, ADDRESS, ROAD_TYPE, ADDRESS_NUM, COUSSINE, FOOD_TYPE, 
-		COUNTRY, TOWN, PRICE
-	}
 	
 	private Spinner foodTypeSpinner;
 	private Spinner roadTypeSpinner;
@@ -125,15 +122,15 @@ public class MainActivity extends Activity implements OnClickListener {
 			int number;
 			double price;
 			
-			foodTypeSpinner.setSelection(savedState.getInt(MainActivityElements.FOOD_TYPE.toString(), 0));
-			roadTypeSpinner.setSelection(savedState.getInt(MainActivityElements.ROAD_TYPE.toString(), 0));
-			coussineSpinner.setSelection(savedState.getInt(MainActivityElements.COUSSINE.toString(), 0));
-			countryAutoText.setText(savedState.getString(MainActivityElements.COUNTRY.toString(), ""));
-			addressText.setText(savedState.getString(MainActivityElements.ADDRESS.toString(), ""));
-			number = savedState.getInt(MainActivityElements.ADDRESS_NUM.toString(), -1);
-			nameText.setText(savedState.getString(MainActivityElements.NAME.toString(), ""));
-			price = savedState.getFloat(MainActivityElements.PRICE.toString(), -1.0f);
-			townText.setText(savedState.getString(MainActivityElements.TOWN.toString(), ""));
+			foodTypeSpinner.setSelection(savedState.getInt(RestaurantAttr.FOOD_TYPE.toString(), 0));
+			roadTypeSpinner.setSelection(savedState.getInt(RestaurantAttr.ROAD_TYPE.toString(), 0));
+			coussineSpinner.setSelection(savedState.getInt(RestaurantAttr.COUSSINE.toString(), 0));
+			countryAutoText.setText(savedState.getString(RestaurantAttr.COUNTRY.toString(), ""));
+			addressText.setText(savedState.getString(RestaurantAttr.ADDRESS.toString(), ""));
+			number = savedState.getInt(RestaurantAttr.ADDRESS_NUM.toString(), -1);
+			nameText.setText(savedState.getString(RestaurantAttr.NAME.toString(), ""));
+			price = savedState.getFloat(RestaurantAttr.PRICE.toString(), -1.0f);
+			townText.setText(savedState.getString(RestaurantAttr.TOWN.toString(), ""));
 			
 			if (number != -1)
 				numberText.setText(Integer.toString(number));
@@ -163,15 +160,15 @@ public class MainActivity extends Activity implements OnClickListener {
 		
 		Log.i("saveState","Valor de price , num: "+price+", "+number);
 		
-		savedStateEdit.putInt(MainActivityElements.FOOD_TYPE.toString(), foodTypeSpinner.getSelectedItemPosition());
-		savedStateEdit.putInt(MainActivityElements.ROAD_TYPE.toString(), roadTypeSpinner.getSelectedItemPosition());
-		savedStateEdit.putInt(MainActivityElements.COUSSINE.toString(), coussineSpinner.getSelectedItemPosition());
-		savedStateEdit.putString(MainActivityElements.COUNTRY.toString(), countryAutoText.getText().toString());
-		savedStateEdit.putString(MainActivityElements.NAME.toString(), nameText.getText().toString());
-		savedStateEdit.putInt(MainActivityElements.ADDRESS_NUM.toString(), number);
-		savedStateEdit.putString(MainActivityElements.ADDRESS.toString(), addressText.getText().toString());
-		savedStateEdit.putFloat(MainActivityElements.PRICE.toString(), (float) price);
-		savedStateEdit.putString(MainActivityElements.TOWN.toString(), townText.getText().toString());
+		savedStateEdit.putInt(RestaurantAttr.FOOD_TYPE.toString(), foodTypeSpinner.getSelectedItemPosition());
+		savedStateEdit.putInt(RestaurantAttr.ROAD_TYPE.toString(), roadTypeSpinner.getSelectedItemPosition());
+		savedStateEdit.putInt(RestaurantAttr.COUSSINE.toString(), coussineSpinner.getSelectedItemPosition());
+		savedStateEdit.putString(RestaurantAttr.COUNTRY.toString(), countryAutoText.getText().toString());
+		savedStateEdit.putString(RestaurantAttr.NAME.toString(), nameText.getText().toString());
+		savedStateEdit.putInt(RestaurantAttr.ADDRESS_NUM.toString(), number);
+		savedStateEdit.putString(RestaurantAttr.ADDRESS.toString(), addressText.getText().toString());
+		savedStateEdit.putFloat(RestaurantAttr.PRICE.toString(), (float) price);
+		savedStateEdit.putString(RestaurantAttr.TOWN.toString(), townText.getText().toString());
 		
 		savedStateEdit.apply();
 	}
