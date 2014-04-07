@@ -25,7 +25,7 @@ public class Restaurant {
 	private String town;
 	
 	private String default_value;
-	public Restaurant(){
+	public Restaurant(Context context){
 		super();
 		this.address = "";
 		this.country = "";
@@ -36,7 +36,8 @@ public class Restaurant {
 		this.price = -1;
 		this.roadType = "";
 		this.town = "";
-		this.default_value = "";
+		
+		this.default_value = context.getResources().getString(R.string.default_value);
 		
 	}
 	

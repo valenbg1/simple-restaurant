@@ -25,7 +25,7 @@ public class ResultsActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		final ArrayList<Restaurant> restaurants = getRestaurants();
+		ArrayList<Restaurant> restaurants = getRestaurants();
 
 		// Create a progress bar to display while the list loads
 		ProgressBar progressBar = new ProgressBar(this);
@@ -46,12 +46,13 @@ public class ResultsActivity extends ListActivity {
 		
 		if (list.isEmpty()) {
 			Iterator<Restaurant> it = restaurants.iterator();
-			while (it.hasNext()){
-				if(!it.next().match(stuff))
+			while (it.hasNext()) {
+				if(!(it.next().match(stuff)))
 					it.remove();
 			}
 			
 			list = restaurants;
+			app.setRestaurants(restaurants);
 		}
 
 		listview.setAdapter(new RestaurantAdapter(this,
@@ -66,7 +67,7 @@ public class ResultsActivity extends ListActivity {
 				String name = parser.getName();
 				if ((name != null) && name.equals("restaurant") && parser.getEventType() != XmlPullParser.END_TAG) {
 					int size = parser.getAttributeCount();
-					Restaurant restaurant = new Restaurant();
+					Restaurant restaurant = new Restaurant(this);
 					for (int i = 0; i < size; i++) {
 						String attrName = parser.getAttributeName(i);
 						String attrValue = parser.getAttributeValue(i);
@@ -82,70 +83,6 @@ public class ResultsActivity extends ListActivity {
 		}
 
 		return restaurants;
-		// return new Restaurant[]{
-		// new Restaurant(this, "Restaurante1", "tradicional" , "española",
-		// "calle", "Falsa", 123, "Madrid", "Madrid", 20.0),
-		// new Restaurant(this, "Restaurante12", "tradicional" , "española",
-		// "calle", "Falsa", 124, "Madrid", "Madrid", 10.0),
-		// new Restaurant(this, "Restaurante13", "creativa" , "india",
-		// "avenida", "La Falsa", 23, "Madrid", "Madrid", 25.0),
-		// new Restaurant(this, "Restaurante14", "tradicional" , "española",
-		// "calle", "Falsa", 125, "Madrid", "Madrid", 27.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// new Restaurant(this, "Restaurante15", "creativa" , "china", "calle",
-		// "Falsa", 122, "Madrid", "Madrid", 15.0),
-		// };
 	}
 
 	@Override

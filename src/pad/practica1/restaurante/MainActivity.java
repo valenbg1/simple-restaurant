@@ -52,7 +52,7 @@ public class MainActivity extends Activity implements OnClickListener {
 		}
 		
 		RestaurantApplication app = (RestaurantApplication) getApplication();
-		Restaurant stuff = new Restaurant();
+		Restaurant stuff = new Restaurant(this);
 		
 		// Vease flush restaurants (Fdo. Valen)
 		app.setRestaurants(new ArrayList<Restaurant>());		
