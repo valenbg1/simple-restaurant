@@ -1,0 +1,5 @@
+* Carga de datos del restaurante:
+	+ Arreglar la carga de restaurantes desde el XML.
+	+ Usar un base de datos SQLite.
+
+* Añadir el uso de Fragments para mostrar datos del restaurante.
