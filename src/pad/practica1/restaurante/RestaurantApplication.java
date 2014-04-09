@@ -2,6 +2,7 @@ package pad.practica1.restaurante;
 
 import java.util.ArrayList;
 
+import pad.practica1.restaurante.restaurant.Restaurant;
 import android.app.Application;
 
 public class RestaurantApplication extends Application {

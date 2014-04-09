@@ -3,7 +3,8 @@ package pad.practica1.restaurante;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import pad.practica1.restaurante.Restaurant.RestaurantAttr;
+import pad.practica1.restaurante.restaurant.Restaurant;
+import pad.practica1.restaurante.restaurant.Restaurant.RestaurantAttr;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;

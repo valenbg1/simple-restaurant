@@ -1,6 +1,8 @@
-package pad.practica1.restaurante;
+package pad.practica1.restaurante.restaurant;
 
 import java.util.Locale;
+
+import pad.practica1.restaurante.R;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
@@ -14,8 +16,11 @@ public class Restaurant {
 	private static final int NUMBER_ERROR_LIMIT = 10;
 	private static final int PRICE_ERROR_LIMIT = 10;
 	
+	private int id;
 	private String address;
+
 	private String country;
+
 	private String coussine;
 	private String foodType;
 	private String name;
@@ -23,10 +28,10 @@ public class Restaurant {
 	private double price;
 	private String roadType;
 	private String town;
-	
 	private String default_value;
 	public Restaurant(Context context){
 		super();
+		this.id = 0;
 		this.address = "";
 		this.country = "";
 		this.coussine = "";
@@ -41,10 +46,11 @@ public class Restaurant {
 		
 	}
 	
-	public Restaurant(Context context, String name, String foodType, String coussine, String roadType,
+	public Restaurant(Context context, int id, String name, String foodType, String coussine, String roadType,
 			String address, int number, String town, String country, double price) {
 		
 		super();
+		this.id = id;
 		this.address = address;
 		this.country = country;
 		this.coussine = coussine;
@@ -57,7 +63,81 @@ public class Restaurant {
 		
 		this.default_value = context.getResources().getString(R.string.default_value);
 	}
+	public String getAddress() {
+		return address;
+	}
 	
+	public String getCountry() {
+		return country;
+	}
+	
+	public String getCoussine() {
+		return coussine;
+	}
+	
+	public String getFoodType() {
+		return foodType;
+	}
+	
+	public String getFullAddress() {
+		return roadType+" "+address+" "+number+", "+town;
+	}
+
+	public int getId() {
+		return id;
+	}
+	
+	public String getName() {
+		return name;
+	}
+
+	public int getNumber() {
+		return number;
+	}
+
+	public double getPrice() {
+		return price;
+	}
+
+	public String getRoadType() {
+		return roadType;
+	}
+
+	public String getTown() {
+		return town;
+	}
+
+	public boolean match(Restaurant r) {
+		if ((!r.address.equals("")) && (!r.address.equalsIgnoreCase(this.address)))
+			return false;
+		
+		if ((!r.country.equals("")) && (!r.country.equalsIgnoreCase(this.country)))
+			return false;
+		
+		if ((!r.coussine.equals(default_value)) && (!r.coussine.equalsIgnoreCase(this.coussine)))
+			return false;
+		
+		if ((!r.foodType.equals(default_value)) && (!r.foodType.equalsIgnoreCase(this.foodType)))
+			return false;
+		
+		if ((!r.name.equals("")) && (!r.name.equalsIgnoreCase(this.name)))
+			return false;
+		
+		if ((!r.town.equals("")) && (!r.town.equalsIgnoreCase(this.town)))
+			return false;
+		
+		if ((!r.roadType.equals(default_value)) && (!r.roadType.equalsIgnoreCase(this.roadType)))
+			return false;
+		
+		if ((r.number > 0) && (Math.abs(r.number - this.number) > NUMBER_ERROR_LIMIT))
+			return false;
+		
+		if ((r.price > 0) && (Math.abs(r.price - this.price) > PRICE_ERROR_LIMIT))
+			return false;
+		
+		return true;
+	}
+
 	public boolean match(String address, String country, String coussine,
 			String foodType, String name, int number, double price,
 			String roadType, String town) {
@@ -90,38 +170,11 @@ public class Restaurant {
 		
 		return true;
 	}
-	
-	public boolean match(Restaurant r) {
-		if ((!r.address.equals("")) && (!r.address.equalsIgnoreCase(this.address)))
-			return false;
-		
-		if ((!r.country.equals("")) && (!r.country.equalsIgnoreCase(this.country)))
-			return false;
-		
-		if ((!r.coussine.equals(default_value)) && (!r.coussine.equalsIgnoreCase(this.coussine)))
-			return false;
-		
-		if ((!r.foodType.equals(default_value)) && (!r.foodType.equalsIgnoreCase(this.foodType)))
-			return false;
-		
-		if ((!r.name.equals("")) && (!r.name.equalsIgnoreCase(this.name)))
-			return false;
-		
-		if ((!r.town.equals("")) && (!r.town.equalsIgnoreCase(this.town)))
-			return false;
-		
-		if ((!r.roadType.equals(default_value)) && (!r.roadType.equalsIgnoreCase(this.roadType)))
-			return false;
-		
-		if ((r.number > 0) && (Math.abs(r.number - this.number) > NUMBER_ERROR_LIMIT))
-			return false;
-		
-		if ((r.price > 0) && (Math.abs(r.price - this.price) > PRICE_ERROR_LIMIT))
-			return false;
-		
-		return true;
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
-	
+
 	@SuppressLint("DefaultLocale")
 	public void setAttribute(String attr, String value){
 		switch (RestaurantAttr.valueOf(attr.toUpperCase(Locale.ENGLISH))) {
@@ -156,50 +209,6 @@ public class Restaurant {
 		
 	}
 
-	public String getAddress() {
-		return address;
-	}
-	
-	public String getFullAddress() {
-		return roadType+" "+address+" "+number+", "+town;
-	}
-
-	public String getCountry() {
-		return country;
-	}
-
-	public String getCoussine() {
-		return coussine;
-	}
-
-	public String getFoodType() {
-		return foodType;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public int getNumber() {
-		return number;
-	}
-
-	public double getPrice() {
-		return price;
-	}
-
-	public String getRoadType() {
-		return roadType;
-	}
-
-	public String getTown() {
-		return town;
-	}
-
-	public void setAddress(String address) {
-		this.address = address;
-	}
-
 	public void setCountry(String country) {
 		this.country = country;
 	}
@@ -210,6 +219,10 @@ public class Restaurant {
 
 	public void setFoodType(String foodType) {
 		this.foodType = foodType;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public void setName(String name) {

@@ -1,5 +1,6 @@
 package pad.practica1.restaurante;
 
+import pad.practica1.restaurante.restaurant.Restaurant;
 import android.app.Activity;
 import android.os.Bundle;
 import android.widget.ImageView;

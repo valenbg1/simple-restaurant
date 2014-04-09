@@ -3,14 +3,13 @@ package pad.practica1.restaurante;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-import org.xmlpull.v1.XmlPullParser;
-
+import pad.practica1.restaurante.restaurant.Restaurant;
+import pad.practica1.restaurante.restaurant.RestaurantXMLFetcher;
 import android.app.ActionBar.LayoutParams;
 import android.app.ListActivity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -25,7 +24,7 @@ public class ResultsActivity extends ListActivity {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 
-		ArrayList<Restaurant> restaurants = getRestaurants();
+		ArrayList<Restaurant> restaurants = new RestaurantXMLFetcher().getRestaurants(this);
 
 		// Create a progress bar to display while the list loads
 		ProgressBar progressBar = new ProgressBar(this);
@@ -57,32 +56,6 @@ public class ResultsActivity extends ListActivity {
 
 		listview.setAdapter(new RestaurantAdapter(this,
 				android.R.layout.simple_list_item_1, list));
-	}
-
-	private ArrayList<Restaurant> getRestaurants() {
-		ArrayList<Restaurant> restaurants = new ArrayList<Restaurant>();
-		XmlPullParser parser = this.getResources().getXml(R.xml.restaurants_db);
-		try {
-			while (parser.next() != XmlPullParser.END_DOCUMENT) {
-				String name = parser.getName();
-				if ((name != null) && name.equals("restaurant") && parser.getEventType() != XmlPullParser.END_TAG) {
-					int size = parser.getAttributeCount();
-					Restaurant restaurant = new Restaurant(this);
-					for (int i = 0; i < size; i++) {
-						String attrName = parser.getAttributeName(i);
-						String attrValue = parser.getAttributeValue(i);
-						
-						restaurant.setAttribute(attrName, attrValue);
-					}
-										
-					restaurants.add(restaurant);
-				}
-			}
-		} catch (Exception e) {
-			Log.e("ReadXMLResourceFile", e.getMessage(), e);
-		}
-
-		return restaurants;
 	}
 
 	@Override
